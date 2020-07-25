@@ -1,3 +1,41 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: fluentd
+  namespace: kube-system
+
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: fluentd
+  namespace: kube-system
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - namespaces
+  verbs:
+  - get
+  - list
+  - watch
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: fluentd
+roleRef:
+  kind: ClusterRole
+  name: fluentd
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  name: fluentd
+  namespace: kube-system
+---
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
@@ -11,6 +49,8 @@ spec:
       labels:
         k8s-app: fluentd-s3
     spec:
+      serviceAccount: fluentd
+      serviceAccountName: fluentd
       containers:
       - name: fluentd-s3
         image: fenglixa/pipeline-logs-s3:latest
@@ -31,11 +71,11 @@ spec:
         #     configMapKeyRef:
         #       name: kubernetes-fluentd-s3-config
         #       key: S3_LOGS_BUCKET_REGION
-          # --use-v1-config allows using env vars in config file
-          # -qq sets fluentd log level to ERROR, -v sets fluentd log level to debug
         args:
-        - --use-v1-config
-        - -v
+          - --use-v1-config
+          - -vv
+          # --use-v1-config allows using env vars in config file
+          # -qq sets fluentd log level to ERROR, -v: debug, -vv: trace
         securityContext:
           privileged: true
         resources:
