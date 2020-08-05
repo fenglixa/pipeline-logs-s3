@@ -25,7 +25,7 @@ The container logs will be archived to S3 as below picture
 
 ## Todo Tasks
 - [ ] Filter container logs belongs to special Tekton Pipelinerun
-- [ ] Store the logs in S3 with the dir of: `/PR_Name/Pod_Name/Container_Name/Container_Name.log`
+- [ ] Store the logs in S3 with the dir of: `/artifacts/$PIPELINERUN/$PIPELINETASK/$FILENAME.gz`
 
 ### Derived from:
 
