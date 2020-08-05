@@ -25,8 +25,7 @@ The container logs will be archived to S3 as below picture
 
 ## Todo Tasks
 - [ ] Filter container logs belongs to special Tekton Pipelinerun
-- [ ] Store the logs in S3 with the dir of: `NameSpace/PR_Name/Pod_Name/Container_Name/Container_Name.log`
-- [ ] Integrate it to KFP-Tekton by `Finally`
+- [ ] Store the logs in S3 with the dir of: `/PR_Name/Pod_Name/Container_Name/Container_Name.log`
 
 ### Derived from:
 
