@@ -67,7 +67,7 @@ spec:
         #       key: S3_LOGS_BUCKET_REGION
         args:
           - --use-v1-config
-          - -v
+          - -qq
           # - --log-rotate-age 10
           # - --log-rotate-size 10485760
           # --use-v1-config allows using env vars in config file
