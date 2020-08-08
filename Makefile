@@ -8,6 +8,6 @@ push:
 
 deploy:
 	@echo 'Deleting existing deployment'
-	@kubectl delete -f kubernetes-fluentd-s3.yaml || echo 'No deployment found, carrying on'
+	@kubectl delete -f tekton-logs-fluentd-s3.yaml || echo 'No deployment found, carrying on'
 	@echo 'Creating new deployment'
-	@kubectl create -f kubernetes-fluentd-s3.yaml
+	@kubectl create -f tekton-logs-fluentd-s3.yaml

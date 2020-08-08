@@ -12,7 +12,7 @@ Collect Tekton pipeline logs to AWS S3, implemented by building docker image of 
     make all
     ```
 
-3. Deploy DaemonSet to collect pods logs to S3:
+3. Deploy DaemonSet to collect Tekton pipeline logs to S3:
 
     ```
     make deploy

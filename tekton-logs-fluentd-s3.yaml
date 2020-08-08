@@ -37,7 +37,7 @@ subjects:
   namespace: kube-system
 
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: fluentd-s3
@@ -45,6 +45,9 @@ metadata:
   labels:
     k8s-app: fluentd-s3
 spec:
+  selector:
+    matchLabels:
+      k8s-app: fluentd-s3
   template:
     metadata:
       labels:
@@ -64,7 +67,9 @@ spec:
         #       key: S3_LOGS_BUCKET_REGION
         args:
           - --use-v1-config
-          - -vv
+          - -v
+          # - --log-rotate-age 10
+          # - --log-rotate-size 10485760
           # --use-v1-config allows using env vars in config file
           # -qq sets fluentd log level to ERROR, -v: debug, -vv: trace
         securityContext:
@@ -78,6 +83,12 @@ spec:
         - name: varlibdockercontainers
           mountPath: /var/lib/docker/containers
           readOnly: true
+        - name: varlibkubeletpods
+          mountPath: /var/lib/kubelet/pods
+          readOnly: true
+        - name: varlogpods
+          mountPath: /var/log/pods
+          readOnly: true
       terminationGracePeriodSeconds: 30
       volumes:
       - name: varlog
@@ -86,3 +97,9 @@ spec:
       - name: varlibdockercontainers
         hostPath:
           path: /var/lib/docker/containers
+      - name: varlibkubeletpods
+        hostPath:
+          path: /var/lib/kubelet/pods
+      - name: varlogpods
+        hostPath:
+          path: /var/log/pods
