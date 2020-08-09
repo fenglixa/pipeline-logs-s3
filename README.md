@@ -1,17 +1,18 @@
 pipeline-logs-s3
 ===
 
-Collect Tekton pipeline logs to S3, implemented by collect pipeline logs via Fluentd in a DaemonSet.
+Collect Tekton pipeline logs to S3, via Fluentd in a DaemonSet.
 
 ## How to use it
 
-### 1. Create secret
+### 1. Create secret for your S3 ACCESS_KEY_ID and SECRET_ACCESS_KEY (admin123):
 ```
 ACCESS_KEY_ID=admin123
 SECRET_ACCESS_KEY=admin123
-kubectl -n kube-system create secret mlpipeline-minio-artifact --from-literal "accesskey=$ACCESS_KEY_ID" --from-literal "secretkey=$SECRET_ACCESS_KEY"
+kubectl -n kube-system create secret pipeline-logs-s3-secret --from-literal "accesskey=$ACCESS_KEY_ID" --from-literal "secretkey=$SECRET_ACCESS_KEY"
 ```
-### 2. Create configMap
+### 2. Create configMap:
+
 ```
 kubectl apply -f - <<EOF
 apiVersion: v1
@@ -26,6 +27,15 @@ data:
   S3_REGION: test_region
 EOF
 ```
+> **Notes:**
+>
+> **S3_ENDPOINT**: Variabel of s3_endpoint, if you are using minio. e.g. http://9.21.53.162:31846
+>
+> **FORCE_PATH_STYLE**: This prevents AWS SDK from breaking endpoint URL, set true if you are using minio
+>
+> **S3_BUCKET**: Variabel of s3_bucket, e.g. mlpipeline
+>
+> **S3_REGION**: Variable of s3_region, e.g. us-east-1 or test_region
 
 ### 3. Collect the pipeline logs to S3
 ```

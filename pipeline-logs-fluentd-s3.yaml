@@ -1,4 +1,3 @@
----
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -59,19 +58,44 @@ spec:
       - name: fluentd-s3
         image: fenglixa/pipeline-logs-s3:latest
         imagePullPolicy: Always
-        # env:
-        # - name: S3_LOGS_BUCKET_REGION
-        #   valueFrom:
-        #     configMapKeyRef:
-        #       name: kubernetes-fluentd-s3-config
-        #       key: S3_LOGS_BUCKET_REGION
+        env:
+        - name: AWS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: pipeline-logs-s3-secret
+              key: accesskey
+        - name: AWS_SEC_KEY
+          valueFrom:
+            secretKeyRef:
+              name: pipeline-logs-s3-secret
+              key: secretkey
+        - name: S3_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              name: pipeline-logs-s3-config
+              key: S3_ENDPOINT
+        - name: FORCE_PATH_STYLE
+          valueFrom:
+            configMapKeyRef:
+              name: pipeline-logs-s3-config
+              key: FORCE_PATH_STYLE
+        - name: S3_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: pipeline-logs-s3-config
+              key: S3_BUCKET
+        - name: S3_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: pipeline-logs-s3-config
+              key: S3_REGION
         args:
           - --use-v1-config
           - -qq
-          # - --log-rotate-age 10
-          # - --log-rotate-size 10485760
           # --use-v1-config allows using env vars in config file
           # -qq sets fluentd log level to ERROR, -v: debug, -vv: trace
+          # - --log-rotate-age 10
+          # - --log-rotate-size 10485760
         securityContext:
           privileged: true
         resources:
