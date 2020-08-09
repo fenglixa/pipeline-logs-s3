@@ -42,6 +42,12 @@ EOF
 kubectl apply -f https://raw.githubusercontent.com/fenglixa/pipeline-logs-s3/master/pipeline-logs-fluentd-s3.yaml
 ```
 
+## Demo The Result
+The container logs will be archived to S3 as below picture
+
+![s3-1](images/s3-1.png)
+![s3-2](images/s3-2.png)
+
 
 ## [Optional] Build image
 1. Clone the repo, refer to [fenglixa/pipeline-logs-s3](https://github.com/fenglixa/pipeline-logs-s3):
@@ -51,8 +57,3 @@ cd pipeline-logs-s3
 ```
 2. Change the image name in "Makefile", and build your docker image via `make build`
 
-## Demo Result
-The container logs will be archived to S3 as below picture
-
-![s3-1](images/s3-1.png)
-![s3-2](images/s3-2.png)
