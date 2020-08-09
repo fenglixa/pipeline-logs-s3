@@ -5,8 +5,8 @@ Collect Tekton pipeline logs to S3, via Fluentd in a DaemonSet.
 
 > Advantage:
 > 1. Lightweight: only an 64.7MB docker image is used.
-> 2. server-side enable: secrity controlled by RBAC from server side.
-> 3. Easy to use: user could provide your S3 info, and apply yaml file to your cluster, then everything is OK.
+> 2. server-side-enable: secrity controlled by RBAC from server side.
+> 3. Easy to use: user just need to provide your S3 info, and apply yaml file to your cluster, then everything is OK.
 
 ## How to use it
 
@@ -58,7 +58,6 @@ The container logs will be archived to S3 as below picture
 ![s3-1](images/s3-1.png)
 ![s3-2](images/s3-2.png)
 
-===
 
 ## [Optional] Build Image
 1. Clone the repo, refer to [fenglixa/pipeline-logs-s3](https://github.com/fenglixa/pipeline-logs-s3):
