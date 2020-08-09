@@ -1,7 +1,7 @@
 pipeline-logs-s3
 ===
 
-Collect Tekton pipeline logs to AWS S3, implemented by building docker image of fluentd, which is about 46 MB size.
+Collect Tekton pipeline logs to S3, implemented by collect pipeline logs via Fluentd in a DaemonSet.
 
 ## Usage
 1. Change `aws_key_id`, `aws_sec_key`, etc... variables in fluent.conf
