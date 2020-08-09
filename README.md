@@ -34,9 +34,7 @@ kubectl apply -f https://raw.githubusercontent.com/fenglixa/pipeline-logs-s3/mas
 
 
 ## [Optional] Build image
-Refer to !(fenglixa/pipeline-logs-s3)(https://github.com/fenglixa/pipeline-logs-s3)
-
-1. Clone the repo:
+1. Clone the repo, refer to [fenglixa/pipeline-logs-s3](https://github.com/fenglixa/pipeline-logs-s3):
 ```
 git clone https://github.com/fenglixa/pipeline-logs-s3.git
 cd pipeline-logs-s3
