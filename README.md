@@ -5,7 +5,7 @@ Collect Tekton pipeline logs to S3, via Fluentd in a DaemonSet.
 
 > Advantage:
 > 1. Lightweight: only an 64.7MB docker image is used.
-> 2. server-side-enable: secrity controlled by RBAC from server side.
+> 2. server-side-enable: security controlled by RBAC from server side.
 > 3. Easy to use: user just need to provide your S3 info, and apply yaml file to your cluster, then everything is OK.
 
 ## How to use it
@@ -68,5 +68,11 @@ cd pipeline-logs-s3
 2. Change the name of docker image in "Makefile", build your docker image:
 ```
 make build
+```
+
+## [Optional] Uninstall/Stop collect logs
+
+```
+kubectl delete -f https://raw.githubusercontent.com/kubeflow/kfp-tekton/master/samples/logging_s3/pipeline_log_to_s3_by_fluentd_recommend/pipeline-logs-fluentd-s3.yaml
 ```
 
