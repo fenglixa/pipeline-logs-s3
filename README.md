@@ -59,20 +59,18 @@ The container logs will be archived to S3 as below picture
 ![s3-2](images/s3-2.png)
 
 
-## [Optional] Build Image
-1. Clone the repo, refer to [fenglixa/pipeline-logs-s3](https://github.com/fenglixa/pipeline-logs-s3):
-```
-git clone https://github.com/fenglixa/pipeline-logs-s3.git
-cd pipeline-logs-s3
-```
-2. Change the name of docker image in "Makefile", build your docker image:
+## Build your image (Optional)
+
+Change the name of docker image in "Makefile", build your docker image:
 ```
 make build
 ```
 
-## [Optional] Uninstall/Stop collect logs
+## Uninstall/Stop collecting the logs (Optional)
 
 ```
 kubectl delete -f https://raw.githubusercontent.com/kubeflow/kfp-tekton/master/samples/logging_s3/pipeline_log_to_s3_by_fluentd_recommend/pipeline-logs-fluentd-s3.yaml
 ```
 
+## Reference
+Refer to [fenglixa/pipeline-logs-s3](https://github.com/fenglixa/pipeline-logs-s3)
