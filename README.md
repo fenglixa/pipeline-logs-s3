@@ -16,7 +16,7 @@ ACCESS_KEY_ID=admin123
 SECRET_ACCESS_KEY=admin123
 kubectl -n kube-system create secret generic pipeline-logs-s3-secret --from-literal "accesskey=$ACCESS_KEY_ID" --from-literal "secretkey=$SECRET_ACCESS_KEY"
 ```
-### 2. Create configMap:
+### 2. Create configMap for S3 related info:
 
 ```
 kubectl apply -f - <<EOF
@@ -49,6 +49,8 @@ EOF
 
 ### 3. Collect the pipeline logs to S3
 ```
+kubectl apply -f https://raw.githubusercontent.com/fenglixa/pipeline-logs-s3/master/fluentd-config.yaml
+
 kubectl apply -f https://raw.githubusercontent.com/fenglixa/pipeline-logs-s3/master/pipeline-logs-fluentd-s3.yaml
 ```
 
