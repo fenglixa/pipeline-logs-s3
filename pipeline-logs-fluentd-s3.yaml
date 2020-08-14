@@ -91,7 +91,7 @@ spec:
               key: S3_REGION
         args:
           - --use-v1-config
-          - -vv
+          - -qq
           # --use-v1-config allows using env vars in config file
           # -qq sets fluentd log level to ERROR, -v: debug, -vv: trace
           # - --log-rotate-age 10
