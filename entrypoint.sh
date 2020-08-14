@@ -8,7 +8,7 @@ if [ -r $DEFAULT ]; then
     . $DEFAULT
     set +o allexport
 fi
-
+echo "${1#-}"
 # If the user has supplied only arguments append them to `fluentd` command
 if [ "${1#-}" != "$1" ]; then
     set -- fluentd "$@"

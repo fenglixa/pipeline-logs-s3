@@ -49,9 +49,7 @@ EOF
 
 ### 3. Collect the pipeline logs to S3
 ```
-kubectl apply -f https://raw.githubusercontent.com/fenglixa/pipeline-logs-s3/master/fluentd-config.yaml
-
-kubectl apply -f https://raw.githubusercontent.com/fenglixa/pipeline-logs-s3/master/pipeline-logs-fluentd-s3.yaml
+make deploy
 ```
 
 ## Demo The Result
